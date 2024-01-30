@@ -1,12 +1,20 @@
-// send messages to service worker
-
 document.addEventListener("DOMContentLoaded", () => {
+  
+  // get form data
   const form = document.getElementById('form');
-
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const formData = new FormData(myForm);
-    const name = formData.get('name');
-    chrome.runtime.sendMessage({action: 'save', data: name});
-  });
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();    
+    handleSave(
+      document.getElementById('name').value  
+    );
+  })
 });
+
+// notify service worker, give window name
+function handleSave(windowName) {
+  // send message to service worker that save action was triggered
+  chrome.runtime.sendMessage({ 
+    action: "store", 
+    windowName: windowName
+  });
+}
