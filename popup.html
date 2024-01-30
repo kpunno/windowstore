@@ -20,9 +20,7 @@
         <div class="row pt-1">
             <form id="form">
                 <div class="col">
-                    <label for="name" class="form-label"></label>
-                    <input placeholder="name" type="name" class="form-control text-center" id="name" aria-describedby="namehelp">
-                    <div id="namehelp" class="form-text"></div>
+                    <input type="text" placeholder="name" class="form-control text-center" id="name" autofocus>
                 </div>
                 <div class="col py-2">
                     <button type="submit" id="save" class="btn p-1 text-white" style="width:100px; background-color: #ab00fe;">
@@ -32,7 +30,6 @@
                 <hr>
             </form>
             <div class="col py-2 pt-1">
-                <!-- dropdown list -->
                 <select id="dropdown" class="form-select">
                     <option class="dropdown-item" value="select" selected disabled hidden>
                         open
