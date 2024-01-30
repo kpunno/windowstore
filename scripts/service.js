@@ -1,9 +1,4 @@
-
-let name;
-
-// listen for tab on activated
-// possibly not needed
-
+/*
 // listener's callback auto-parameterized with current tab object
 chrome.tabs.onCreated.addListener((tab) => {
     console.log(tab.id);
@@ -13,26 +8,40 @@ chrome.tabs.onCreated.addListener((tab) => {
 chrome.tabs.onRemoved.addListener((tabId) => {
     console.log(tabId);
 })
+*/
 
-chrome.runtime.onMessage.addListener((message, data) => {
-    if (message.action === 'save') {
-        getWindow(data.name);
-        // save logic
+chrome.runtime.onMessage.addListener((message) => {
+    if (message.action === 'store') {
+        // get window that triggered save action
+        getWindow(message.windowName);
     }
 })
 
-// get currently open tabs
-function getWindow(name) {
-    chrome.windows.getCurrent({populate: true},(window) => storeWindow(window))
+// get last focused window
+function getWindow(windowName) {
+    chrome.windows.getLastFocused({populate: true}, res => {
+        // store URLs of last focused window's tabs
+        storeWindow(windowName, res)
+    });
 }
 
-// save session
-function storeWindow(window) {
-    const name = name;
-    chrome.storage.sync.set({window: {name: name, window: window}}, () => {
-        console.log("set window.")
+// store urls in local storage
+function storeWindow(name, res) {
+    // extract URLs
+    urls = []
+    res.tabs.forEach(tab => {
+        urls.push(tab.url)
     })
+    chrome.storage.sync.set({name, urls}, () => {
+        console.log("A new window was saved.");
+    })
+    //
+    // TODO: define appropriate response after storage
+    //
     chrome.storage.sync.get().then((result) => {
         console.log(result);
+    })
+    chrome.storage.local.clear(() => {
+        console.log("Storage was purged.");
     })
 }
