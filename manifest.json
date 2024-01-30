@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "tab portal",
+  "name": "windowstore",
   "description": "save a window, reconstruct it later",
   "version": "0.0.1",
   "action": {

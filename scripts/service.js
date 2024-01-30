@@ -3,9 +3,6 @@ let name;
 
 // listen for tab on activated
 // possibly not needed
-chrome.tabs.onActivated.addListener(() => {
-    getTabs();
-});
 
 // listener's callback auto-parameterized with current tab object
 chrome.tabs.onCreated.addListener((tab) => {
