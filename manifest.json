@@ -1,11 +1,23 @@
 {
-    "manifest_version": 3,
-    "name": "tab-portal",
-    "description": "save a window, reconstruct it later",
-    "version": "1.0",
-    "action": {
-        "default_popup": "popup.html",
-        "default_icon": "default_icon.png"
-    },
-    "permissions": ["tabs"]
+  "manifest_version": 3,
+  "name": "tab portal",
+  "description": "save a window, reconstruct it later",
+  "version": "0.0.1",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "default_icon.png"
+  },
+  "permissions": ["tabs", "storage"],
+  "background": {
+    "service_worker": "scripts/service.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "content_scripts": [
+    {
+        "matches": ["<all_urls>"],
+        "js": ["scripts/document.js"]
+    }
+  ]
 }
