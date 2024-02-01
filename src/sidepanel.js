@@ -2,36 +2,7 @@
 // clicking prompts fetching data
 // TODO: refactor to allow both the 'popup button' and 'sidepanel button' to fetch windows
 document.addEventListener("DOMContentLoaded", () => {
-  const div = document.getElementById("windows");
-
-  // append 'open' button
-  let button = document.createElement("button");
-  button.textContent = "open";
-
-  button = stylizeButton(button);
-
-  button.addEventListener("click", () => {
-    getWindowsFromStore();
-  });
-
-  div.appendChild(button);
-});
-
-chrome.runtime.onMessage.addListener(async (message) => {
-  if (message.action == "get") {
-    const contentLoad = await new Promise((resolve) => {
-      if (
-        document.readyState === "complete" ||
-        document.readyState === "interactive"
-      ) {
-        resolve();
-      } else {
-        document.addEventListener("DOMContentLoaded", resolve);
-      }
-    });
-    // once DOM is loaded, get
-    getWindowsFromStore();
-  }
+  getWindowsFromStore();
 });
 
 function getWindowsFromStore() {
