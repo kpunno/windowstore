@@ -1,55 +1,52 @@
-// append open button to side panel
-// clicking prompts fetching data
-// TODO: refactor to allow both the 'popup button' and 'sidepanel button' to fetch windows
+
+// first, load contents of side panel
 document.addEventListener("DOMContentLoaded", () => {
   getWindowsFromStore();
 });
 
+// get from store, continue to load elements
 function getWindowsFromStore() {
   chrome.storage.sync.get().then((data) => {
     loadElements(data);
   });
 }
 
+// append restorable windows as buttons to side panel
 function loadElements(data) {
   const div = document.getElementById("windows");
 
-  // remove obsolete data
-  while (div.firstChild) {
-    div.removeChild(div.firstChild);
-  }
-
-  // temp for tests
-  // iterate through objects held in store
+  // add button for each restorable window
   for (key in data) {
-    console.log(key); // name
-    console.log(data[key].urls); // url array
-  }
-
-  // iterate through objects held in store
-  for (key in data) {
+    // button, tab count are children of a span
     let span = document.createElement("span");
-
     let button = document.createElement("button");
+    let badge = document.createElement("span");
+    
+    // set button content, style
     button.textContent = key;
     button = styleNameButton(button);
+    
+    // set badge content, style
+    badge.textContent = `${data[key].urls.length} tabs `
+    badge = styleTabCountBadge(badge);
+
+    // append children
+    span.appendChild(button);
+    span.appendChild(badge);
+    div.appendChild(span);
+    div.appendChild(document.createElement("br"));
+    
+    // clickable event to restore window
     button.addEventListener("click", () => {
       //
       // TODO: REOPEN WINDOW
       //
       console.log(`${key} was clicked.`);
     });
-    let badge = document.createElement("span");
-    badge.textContent = `${data[key].urls.length} tabs `
-    badge = styleTabCountBadge(badge);
-    span.appendChild(button);
-    span.appendChild(badge);
-    div.appendChild(span);
-    div.appendChild(document.createElement("br"));
-    
   }
 }
 
+// style the button
 function styleNameButton(button) {
   button.classList.add("btn", "p-0", "m-2");
   button.style = `
@@ -60,6 +57,7 @@ function styleNameButton(button) {
   return button;
 }
 
+// style the badge
 function styleTabCountBadge(badge) {
   badge.style = `color: #555baa;`;
   badge.classList.add(

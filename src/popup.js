@@ -6,14 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
     handleSave(document.getElementById("name").value);
   });
 
-  // open listener for side panel options
+  // open the side panel
   const openBtn = document.getElementById("open");
   openBtn.addEventListener("click", function () {
-    //
-    // restore session of (selectedValue)
-    //
+    // get last focused window
     chrome.windows.getLastFocused({}, (window) => {
+      // open the side panel for the focused window
       chrome.sidePanel.open({ windowId: window.id }, () => {
+        // send for src/sidepanel.js to receive
         chrome.runtime.sendMessage({action: "get"});
       });
     });
@@ -28,10 +28,3 @@ function handleSave(windowName) {
     windowName: windowName,
   });
 }
-
-// Ex: func showWindows() {
-// get target element
-// targetE.forEach(funcscript) -> defined outside of scope
-//      // logic to create html elements
-// }
-//

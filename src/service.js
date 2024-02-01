@@ -1,20 +1,5 @@
-/*
-// listener's callback auto-parameterized with current tab object
-chrome.tabs.onCreated.addListener((tab) => {
-    console.log(tab.id);
-})
-
-// listener's callback auto-parameterized with current tab ID
-chrome.tabs.onRemoved.addListener((tabId) => {
-    console.log(tabId);
-})
-*/
-
-const RESET_STORAGE = false;
-
 chrome.runtime.onMessage.addListener((message, sender, response) => {
   if (message.action === "store") {
-    // get window that triggered save action
     getWindow(message.windowName);
     //
     // response({status: "received"});
@@ -24,8 +9,9 @@ chrome.runtime.onMessage.addListener((message, sender, response) => {
 
 // get last focused window
 function getWindow(windowName) {
+  // populate with tabs
   chrome.windows.getLastFocused({ populate: true }, (res) => {
-    // store URLs of last focused window's tabs
+    // pass name and response
     storeWindow(windowName, res);
   });
 }
@@ -37,7 +23,8 @@ function storeWindow(name, res) {
   res.tabs.forEach((tab) => {
     urls.push(tab.url);
   });
-  chrome.storage.sync.set({ [name]: {urls} }, () => {
+  // spread operator? urls -> ...urls
+  chrome.storage.sync.set({ [name]: { urls } }, () => {
     console.log("A new window was saved.");
   });
   //
@@ -47,12 +34,15 @@ function storeWindow(name, res) {
     console.log(result);
   });
 
-  if (RESET_STORAGE == true) {
-    chrome.storage.sync.clear(() => {
-      console.log("Synchronized storage was purged.");
-    });
-    chrome.storage.local.clear(() => {
-      console.log("Local storage was purged.");
-    });
-  }
+  /*
+  // CLEAR
+
+  chrome.storage.sync.clear(() => {
+    console.log("Synchronized storage was purged.");
+  });
+  chrome.storage.local.clear(() => {
+    console.log("Local storage was purged.");
+  });
+
+  */
 }
