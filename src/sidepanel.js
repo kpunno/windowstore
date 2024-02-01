@@ -6,28 +6,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // get from store, continue to load elements
 function getWindowsFromStore() {
-  chrome.storage.sync.get().then((data) => {
-    loadElements(data);
+  chrome.storage.sync.get().then((windows) => {
+    loadElements(windows);
   });
 }
 
 // append restorable windows as buttons to side panel
-function loadElements(data) {
+function loadElements(windows) {
   const div = document.getElementById("windows");
 
-  // add button for each restorable window
-  for (key in data) {
+  for (window in windows) {
     // button, tab count are children of a span
     let span = document.createElement("span");
     let button = document.createElement("button");
     let badge = document.createElement("span");
     
     // set button content, style
-    button.textContent = key;
+    button.textContent = window;
     button = styleNameButton(button);
     
     // set badge content, style
-    badge.textContent = `${data[key].urls.length} tabs `
+    badge.textContent = `${windows[window].urls.length} tabs `
     badge = styleTabCountBadge(badge);
 
     // append children
@@ -41,7 +40,7 @@ function loadElements(data) {
       //
       // TODO: REOPEN WINDOW
       //
-      console.log(`${key} was clicked.`);
+      console.log(`${window} was clicked.`);
     });
   }
 }

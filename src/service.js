@@ -1,9 +1,6 @@
 chrome.runtime.onMessage.addListener((message, sender, response) => {
   if (message.action === "store") {
     getWindow(message.windowName);
-    //
-    // response({status: "received"});
-    //
   }
 });
 
@@ -11,14 +8,12 @@ chrome.runtime.onMessage.addListener((message, sender, response) => {
 function getWindow(windowName) {
   // populate with tabs
   chrome.windows.getLastFocused({ populate: true }, (res) => {
-    // pass name and response
     storeWindow(windowName, res);
   });
 }
 
-// store urls in local storage
+// store urls in sync storage
 function storeWindow(name, res) {
-  // extract URLs
   urls = [];
   res.tabs.forEach((tab) => {
     urls.push(tab.url);
