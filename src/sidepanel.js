@@ -8,25 +8,26 @@ document.addEventListener("DOMContentLoaded", () => {
 function getWindowsFromStore() {
   chrome.storage.sync.get().then((windows) => {
     loadElements(windows);
+    console.log(windows);
   });
 }
 
 // append restorable windows as buttons to side panel
-function loadElements(windows) {
+function loadElements(data) {
   const div = document.getElementById("windows");
 
-  for (window in windows) {
+  for (key in data) {
     // button, tab count are children of a span
     let span = document.createElement("span");
     let button = document.createElement("button");
     let badge = document.createElement("span");
     
     // set button content, style
-    button.textContent = window;
+    button.textContent = key;
     button = styleNameButton(button);
     
     // set badge content, style
-    badge.textContent = `${windows[window].urls.length} tabs `
+    badge.textContent = `${data[key].urls.length} tabs`
     badge = styleTabCountBadge(badge);
 
     // append children
@@ -40,17 +41,17 @@ function loadElements(windows) {
       //
       // TODO: REOPEN WINDOW
       //
-      console.log(`${window} was clicked.`);
+      console.log(`${key} was clicked.`);
     });
   }
 }
 
 // style the button
 function styleNameButton(button) {
-  button.classList.add("btn", "p-0", "m-2");
+  button.classList.add("btn", "p-0", "m-2", "text-white");
   button.style = `
     width:100px; 
-    background-color: #b1b7f7;
+    background-color: #7177ce;
     color: #150F7A;
     `;
   return button;
@@ -60,7 +61,7 @@ function styleNameButton(button) {
 function styleTabCountBadge(badge) {
   badge.style = `color: #555baa;`;
   badge.classList.add(
-    "badge","bg-light", "p-1", "m-1", "rounded-pill"
+    "badge","bg-light", "p-2", "m-1", "rounded-pill"
     );
   return badge;
 }

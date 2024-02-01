@@ -14,7 +14,7 @@ function getWindow(windowName) {
 
 // store urls in sync storage
 function storeWindow(name, res) {
-  urls = [];
+  urls = []
   res.tabs.forEach((tab) => {
     urls.push(tab.url);
   });
@@ -29,15 +29,15 @@ function storeWindow(name, res) {
     console.log(result);
   });
 
-  /*
+  
   // CLEAR
+  
+  // chrome.storage.sync.clear(() => {
+  //   console.log("Synchronized storage was purged.");
+  // });
+  // chrome.storage.local.clear(() => {
+  //   console.log("Local storage was purged.");
+  // });
 
-  chrome.storage.sync.clear(() => {
-    console.log("Synchronized storage was purged.");
-  });
-  chrome.storage.local.clear(() => {
-    console.log("Local storage was purged.");
-  });
-
-  */
+  
 }
