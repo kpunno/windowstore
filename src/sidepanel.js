@@ -21,7 +21,6 @@ function loadElements(data) {
     let span = document.createElement("span");
     let button = document.createElement("button");
     let badge = document.createElement("span");
-    
     // set button content, style
     button.textContent = key;
     button = styleNameButton(button);
@@ -48,20 +47,12 @@ function loadElements(data) {
 
 // style the button
 function styleNameButton(button) {
-  button.classList.add("btn", "p-0", "m-2", "text-white");
-  button.style = `
-    width:100px; 
-    background-color: #7177ce;
-    color: #150F7A;
-    `;
+  button.classList.add("btn-shadowed");
   return button;
 }
 
 // style the badge
 function styleTabCountBadge(badge) {
-  badge.style = `color: #555baa;`;
-  badge.classList.add(
-    "badge","bg-light", "p-2", "m-1", "rounded-pill"
-    );
+  badge.classList.add("badge-shadowed");
   return badge;
 }
