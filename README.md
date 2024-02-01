@@ -4,4 +4,4 @@ save a window as a **named** list of URLS in your **chrome browser** and restore
 
 <br><br>
 
-![](https://raw.githubusercontent.com/kpunno/windowstore/main/sample/windowstore-example.png)
+![example (sidepanel)](https://raw.githubusercontent.com/kpunno/windowstore/main/sample/windowstore-example.png)
