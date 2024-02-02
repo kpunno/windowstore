@@ -47,7 +47,7 @@ function loadElements(data) {
 
 // style the button
 function styleNameButton(button) {
-  button.classList.add("btn-shadowed");
+  button.classList.add("btn-shadowed", "btn-sidepanel");
   return button;
 }
 

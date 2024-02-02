@@ -27,20 +27,33 @@ span {
     font-size: 1.25rem;
 }
 
+.btn-sidepanel {
+    width: 120px;
+}
+
+.btn-popup {
+    width: 80px;
+}
+.btn-popup:disabled, 
+.btn-popup:disabled:hover, 
+.btn-popup.btn-popup:disabled:active {
+    background-color: #6066bd;
+    color:#999ccd;
+    text-shadow:none;
+}
+
 .btn-shadowed, .badge-shadowed {
-    width: 2rem;
+    overflow: hidden;
     border-radius: 6px;
-    padding: 0.25rem;
     margin: 0.5rem;
-    box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .badge-shadowed {
+    width: 2rem;
+    padding: 0.25rem;
     text-align: center;
     margin-left: 0px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    font-weight: bold;
     font-size: 0.75rem;
     color: #000000;
     background-color: #ccceee;
@@ -52,8 +65,9 @@ span {
 }
 
 .btn-shadowed, .btn-shadowed.btn-shadowed:active {
+    padding-top: 1px;
+    padding-bottom: 1px;
     color: #f7ecff;
-    width: 120px;
     background-color: #7177ce;
     border-top: 2px solid #8288df;
     border-right: 1px solid #7177ce;

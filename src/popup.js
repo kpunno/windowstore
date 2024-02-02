@@ -6,6 +6,17 @@ document.addEventListener("DOMContentLoaded", () => {
     handleSave(document.getElementById("name").value);
   });
 
+  const name = document.getElementById("name");
+  const save = document.getElementById("save");
+
+  name.addEventListener("input", (e) => {
+    if (name.value === "" || name.value.length > 20) {
+      save.disabled = true;
+    } else {
+      save.disabled = false;
+    }
+  })
+
   // open the side panel
   const openBtn = document.getElementById("open");
   openBtn.addEventListener("click", function () {
