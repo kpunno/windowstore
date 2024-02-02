@@ -26,7 +26,7 @@ function loadElements(data) {
     button = styleNameButton(button);
     
     // set badge content, style
-    badge.textContent = `${data[key].urls.length} tabs`
+    badge.textContent = `${data[key].urls.length}`
     badge = styleTabCountBadge(badge);
 
     // append children
