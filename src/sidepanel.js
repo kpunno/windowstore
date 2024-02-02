@@ -1,20 +1,26 @@
+// get from store, continue to load elements
+function getWindowsFromStore() {
+  chrome.storage.sync.get().then((windows) => {
+    loadElements(windows);
+  });
+}
 
 // first, load contents of side panel
 document.addEventListener("DOMContentLoaded", () => {
   getWindowsFromStore();
 });
 
-// get from store, continue to load elements
-function getWindowsFromStore() {
-  chrome.storage.sync.get().then((windows) => {
-    loadElements(windows);
-    console.log(windows);
-  });
-}
+// listen for storage updates
+chrome.runtime.onMessage.addListener((message, sender, response) => {
+  if (message.action === "update") {
+    getWindowsFromStore();
+  }
+});
 
 // append restorable windows as buttons to side panel
 function loadElements(data) {
   const div = document.getElementById("windows");
+  div.innerHTML = "";
 
   for (key in data) {
     // button, tab count are children of a span

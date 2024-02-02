@@ -25,9 +25,7 @@ function storeWindow(name, res) {
   //
   // TODO: define appropriate response after storage
   //
-  chrome.storage.sync.get().then((result) => {
-    console.log(result);
-  });
+  chrome.runtime.sendMessage({action: "update"});
 
   
   // CLEAR
@@ -38,6 +36,5 @@ function storeWindow(name, res) {
   // chrome.storage.local.clear(() => {
   //   console.log("Local storage was purged.");
   // });
-
   
 }
