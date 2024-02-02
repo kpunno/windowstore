@@ -1,0 +1,79 @@
+hr {
+    border-color: rgb(196, 162, 202);;
+}
+
+span {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* div, first level */
+.div-l1 {
+    padding: 0.5rem;
+    background-color: #d4d7f5;
+}
+
+/* div, second level */
+.div-l2 {
+    box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    background-color: #3f448a;
+    border-radius: 1rem;
+    border-top: 2px solid;
+    border-color: #8d92d7;
+}
+
+.title {
+    font-size: 1.25rem;
+}
+
+.btn-shadowed, .badge-shadowed {
+    width: 2rem;
+    border-radius: 6px;
+    padding: 0.25rem;
+    margin: 0.5rem;
+    box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.badge-shadowed {
+    text-align: center;
+    margin-left: 0px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-weight: bold;
+    font-size: 0.75rem;
+    color: #000000;
+    background-color: #ccceee;
+    border-top: 2px solid #dddfff;
+    border-right: 1px solid #ccceee;
+    border-left: 1px solid #ccceee;
+    border-bottom: 2px solid #aaaddd;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-shadowed, .btn-shadowed.btn-shadowed:active {
+    color: #f7ecff;
+    width: 120px;
+    background-color: #7177ce;
+    border-top: 2px solid #8288df;
+    border-right: 1px solid #7177ce;
+    border-left: 1px solid #7177ce;
+    border-bottom: 2px solid #6066bd;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.4s ease;
+}
+
+.text-shadowed {
+    color: white;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 1);
+}
+
+.btn-shadowed:hover {
+    color: white;
+    background-color: #8288df;
+    border-top: 2px solid #9399f0;
+    border-right: 1px solid #8288df;
+    border-left: 1px solid #8288df;
+    border-bottom: 2px solid #6066bd;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
+}
