@@ -1,3 +1,3 @@
 # windowstore
 
-no clutter sidepanel window in chrome to save windows
+no clutter sidepanel for chrome save and restore windows
