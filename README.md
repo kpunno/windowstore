@@ -1,3 +1,3 @@
 # windowstore
 
-no clutter sidepanel for chrome save and restore windows
+chrome extension for account-synced storage and retrieval of multitab windows
