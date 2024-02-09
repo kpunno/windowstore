@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   getWindowsFromStore();
 });
 
-// listen for storage updates
+// listen for storage updates, send by src/service.js
 chrome.runtime.onMessage.addListener((message, sender, response) => {
   if (message.action === "update") {
     getWindowsFromStore();

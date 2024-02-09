@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function handleSave(windowName) {
   // send message to service worker that save action was triggered
   chrome.runtime.sendMessage({
-    action: "store",
+    action: "save",
     windowName: windowName,
   });
 }

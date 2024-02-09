@@ -1,5 +1,9 @@
+// true -> clear storage after next save
+const _CLEAR_ = false;
+
+// listens for the save message (sent by src/popup.js)
 chrome.runtime.onMessage.addListener((message, sender, response) => {
-  if (message.action === "store") {
+  if (message.action === "save") {
     getWindow(message.windowName);
   }
 });
@@ -18,23 +22,23 @@ function storeWindow(name, res) {
   res.tabs.forEach((tab) => {
     urls.push(tab.url);
   });
-  // spread operator? urls -> ...urls
+  
   chrome.storage.sync.set({ [name]: { urls } }, () => {
     console.log("A new window was saved.");
   });
-  //
-  // TODO: define appropriate response after storage
-  //
+
+  // inform sidepanel to update list
   chrome.runtime.sendMessage({action: "update"});
 
-  
-  // CLEAR
-  
-  // chrome.storage.sync.clear(() => {
-  //   console.log("Synchronized storage was purged.");
-  // });
-  // chrome.storage.local.clear(() => {
-  //   console.log("Local storage was purged.");
-  // });
-  
+  // purge all items in storage
+  if (_CLEAR_ === true) CLEAR_STORAGE();
+}
+
+function CLEAR_STORAGE() {
+  chrome.storage.sync.clear(() => {
+    console.log("Synchronized storage was purged.");
+  });
+  chrome.storage.local.clear(() => {
+    console.log("Local storage was purged.");
+  });
 }
