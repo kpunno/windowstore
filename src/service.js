@@ -1,4 +1,5 @@
 // true -> clear storage after next save
+// DEV ONLY
 const _CLEAR_ = false;
 
 // listens for the save message (sent by src/popup.js)
@@ -12,7 +13,7 @@ chrome.runtime.onMessage.addListener((message, sender, response) => {
 function getWindow(windowName) {
   // populate with tabs
   chrome.windows.getLastFocused({ populate: true }, (res) => {
-    storeWindow(windowName, res);
+      storeWindow(windowName, res);
   });
 }
 
@@ -30,10 +31,20 @@ function storeWindow(name, res) {
   // inform sidepanel to update list
   chrome.runtime.sendMessage({action: "update"});
 
-  // purge all items in storage
+  //
+  // DEV ONLY
+  //
   if (_CLEAR_ === true) CLEAR_STORAGE();
 }
 
+function openWindow() {
+  
+}
+
+//
+// DEV ONLY
+// purge all items in storage
+//
 function CLEAR_STORAGE() {
   chrome.storage.sync.clear(() => {
     console.log("Synchronized storage was purged.");

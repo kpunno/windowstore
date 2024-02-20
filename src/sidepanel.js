@@ -5,6 +5,13 @@ function getWindowsFromStore() {
   });
 }
 
+// find in store, open window
+function openWindow(urls) {
+  console.log(urls);
+  // send message to service worker that open action was triggered
+  chrome.windows.create({url: urls}, () => {});
+}
+
 // first, load contents of side panel
 document.addEventListener("DOMContentLoaded", () => {
   getWindowsFromStore();
@@ -22,6 +29,7 @@ function loadElements(data) {
   const div = document.getElementById("windows");
   div.innerHTML = "";
 
+  console.log(data);
   for (key in data) {
     // button, tab count are children of a span
     let span = document.createElement("span");
@@ -30,9 +38,9 @@ function loadElements(data) {
     // set button content, style
     button.textContent = key;
     button = styleNameButton(button);
-    
+
     // set badge content, style
-    badge.textContent = `${data[key].urls.length}`
+    badge.textContent = `${data[key].urls.length}`;
     badge = styleTabCountBadge(badge);
 
     // append children
@@ -40,14 +48,14 @@ function loadElements(data) {
     span.appendChild(badge);
     div.appendChild(span);
     div.appendChild(document.createElement("br"));
-    
+
     // clickable event to restore window
-    button.addEventListener("click", () => {
-      //
-      // TODO: REOPEN WINDOW
-      //
-      console.log(`${key} was clicked.`);
-    });
+    button.addEventListener("click", (key => {
+      return () => {
+        // Open the window by the URLs
+        openWindow(data[key].urls);
+      }
+    })(key));
   }
 }
 

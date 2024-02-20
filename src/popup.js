@@ -22,9 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
   openBtn.addEventListener("click", function () {
     // get last focused window
     chrome.windows.getLastFocused({}, (window) => {
-      // open the side panel for the focused window
+      // open the side panel for the currently focused window
       chrome.sidePanel.open({ windowId: window.id }, () => {
-        // send for src/sidepanel.js to receive
+        // send for src/sidepanel.js to receive saved windows
         chrome.runtime.sendMessage({action: "get"});
       });
     });
