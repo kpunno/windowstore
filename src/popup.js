@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // open the side panel
   const openBtn = document.getElementById("open");
   openBtn.addEventListener("click", function () {
+    window.close();
     // get last focused window
     chrome.windows.getLastFocused({}, (window) => {
       // open the side panel for the currently focused window
