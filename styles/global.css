@@ -42,7 +42,7 @@ span {
     text-shadow:none;
 }
 
-.btn-shadowed, .badge-shadowed {
+.btn-shadowed, .btn-delete, .badge-shadowed {
     overflow: hidden;
     border-radius: 6px;
     margin: 0.5rem;
@@ -77,6 +77,23 @@ span {
     transition: background-color 0.4s ease;
 }
 
+.btn-delete, .btn-delete.btn-delete:active {
+    vertical-align: top;
+    width: 2rem;
+    padding: 0.25rem;
+    text-align: center;
+    margin-left: 0px;
+    font-size: 0.75rem;
+    color: #000000;
+    background-color: #ee6666;
+    border-top: 2px solid #ff7777;
+    border-right: 1px solid #ee6666;
+    border-left: 1px solid #ee6666;
+    border-bottom: 2px solid #dd5555;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.4s ease;
+}
+
 .text-shadowed {
     color: white;
     text-shadow: 0px 3px 6px rgba(0, 0, 0, 1);
@@ -89,6 +106,15 @@ span {
     border-right: 1px solid #8288df;
     border-left: 1px solid #8288df;
     border-bottom: 2px solid #6066bd;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
+}
+
+.btn-delete:hover {
+    background-color: #df2222;
+    border-top: 2px solid #f04444;
+    border-right: 1px solid #df2222;
+    border-left: 1px solid #df2222;
+    border-bottom: 2px solid #bd0000;
     text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
 }
 

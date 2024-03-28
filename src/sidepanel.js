@@ -33,17 +33,20 @@ function loadElements(data) {
     let span = document.createElement("span");
     let button = document.createElement("button");
     let badge = document.createElement("span");
+    let deleteBtn = document.createElement("button");
     // set button content, style
     button.textContent = key;
     button = styleNameButton(button);
-
     // set badge content, style
     badge.textContent = `${data[key].urls.length}`;
     badge = styleTabCountBadge(badge);
-
+    // set delete button content
+    deleteBtn.textContent="X";
+    deleteBtn.classList.add("btn-delete");
     // append children
     span.appendChild(button);
     span.appendChild(badge);
+    span.appendChild(deleteBtn);
     div.appendChild(span);
     div.appendChild(document.createElement("br"));
 
