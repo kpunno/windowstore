@@ -37,10 +37,6 @@ function storeWindow(name, res) {
   if (_CLEAR_ === true) CLEAR_STORAGE();
 }
 
-function openWindow() {
-  
-}
-
 //
 // DEV ONLY
 // purge all items in storage

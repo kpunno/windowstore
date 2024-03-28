@@ -7,8 +7,6 @@ function getWindowsFromStore() {
 
 // find in store, open window
 function openWindow(urls) {
-  console.log(urls);
-  // send message to service worker that open action was triggered
   chrome.windows.create({url: urls}, () => {});
 }
 
