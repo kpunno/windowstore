@@ -1,3 +1,3 @@
 # windowstore
 
-chrome extension for account-synced storage and retrieval of multitab windows, alternative to bookmarking
+chrome extension for account-synced storage and multitab windows, alternative to bookmarking
