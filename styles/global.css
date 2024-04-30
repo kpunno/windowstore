@@ -1,3 +1,7 @@
+.center {
+    text-align: center;
+}
+
 hr {
     border-color: rgb(196, 162, 202);;
 }
@@ -30,6 +34,7 @@ span {
 }
 
 .title {
+    color:#3f448a;
     font-size: 1.25rem;
 }
 
@@ -37,14 +42,14 @@ span {
     width: 120px;
 }
 
-.btn-popup {
-    margin: auto;
-    width: 50%;
-    width: 80px;
-}
-
 .btn-popup:focus {
     box-shadow: 0px 2px 8px rgba(222, 146, 255, 0.5);
+}
+
+.btn-popup {
+    width:80%;
+    margin:auto;
+    text-align: center;
 }
 
 .btn-popup:disabled, 
@@ -63,7 +68,6 @@ span {
 }
 
 .badge-shadowed {
-    width: 2rem;
     padding: 0.25rem;
     text-align: center;
     margin-left: 0px;
