@@ -9,6 +9,13 @@ chrome.runtime.onMessage.addListener((message, sender, response) => {
   }
 });
 
+// listens for delete message sent by src/sidepanel.js
+chrome.runtime.onMessage.addListener((message, sender, response) => {
+  if (message.action === "delete") {
+    deleteWindow(message.windowName);
+  }
+})
+
 // get last focused window
 function getWindow(windowName) {
   // populate with tabs
@@ -17,15 +24,22 @@ function getWindow(windowName) {
   });
 }
 
+function deleteWindow(name) {
+  chrome.storage.sync.remove([name] , (name) => {
+    console.log(`${name} was removed.`);
+  })
+  chrome.runtime.sendMessage({action: "update"});
+}
+
 // store urls in sync storage
 function storeWindow(name, res) {
-  urls = []
+  let urls = []
   res.tabs.forEach((tab) => {
     urls.push(tab.url);
   });
   
-  chrome.storage.sync.set({ [name]: { urls } }, () => {
-    console.log("A new window was saved.");
+  chrome.storage.sync.set({ [name]: { urls } }, (name) => {
+    console.log(`Window "${name}" was saved.`);
   });
 
   // inform sidepanel to update list

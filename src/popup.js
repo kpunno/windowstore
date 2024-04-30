@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  const form = document.getElementById("form");
   // submission listener for window storage
-  document.getElementById("form").addEventListener("submit", (e) => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
     handleSave(document.getElementById("name").value);
   });

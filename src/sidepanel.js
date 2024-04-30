@@ -22,12 +22,20 @@ chrome.runtime.onMessage.addListener((message, sender, response) => {
   }
 });
 
+// notify service worker, give window name
+function handleDelete(windowName) {
+  // send message to service worker that save action was triggered
+  chrome.runtime.sendMessage({
+    action: "delete",
+    windowName: windowName,
+  });
+}
+
 // append restorable windows as buttons to side panel
 function loadElements(data) {
   const div = document.getElementById("windows");
   div.innerHTML = "";
 
-  console.log(data);
   for (key in data) {
     // button, tab count are children of a span
     let span = document.createElement("span");
@@ -55,6 +63,12 @@ function loadElements(data) {
       return () => {
         // Open the window by the URLs
         openWindow(data[key].urls);
+      }
+    })(key));
+
+    deleteBtn.addEventListener("click", (key => {
+      return () => {
+        handleDelete(key);
       }
     })(key));
   }
