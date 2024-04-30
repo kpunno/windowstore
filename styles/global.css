@@ -38,8 +38,15 @@ span {
 }
 
 .btn-popup {
+    margin: auto;
+    width: 50%;
     width: 80px;
 }
+
+.btn-popup:focus {
+    box-shadow: 0px 2px 8px rgba(222, 146, 255, 0.5);
+}
+
 .btn-popup:disabled, 
 .btn-popup:disabled:hover, 
 .btn-popup.btn-popup:disabled:active {
