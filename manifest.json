@@ -16,7 +16,8 @@
   },
   "content_scripts": [
     {
-        "js": ["src/popup.js"]
+        "matches": ["<all_urls>"],
+        "js": ["src/popup.js", "src/sidepanel.js"]
     }
   ],
   "side_panel": {
