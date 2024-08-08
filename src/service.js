@@ -43,7 +43,8 @@ function storeWindow(name, res) {
   });
 
   // inform sidepanel to update list
-  chrome.runtime.sendMessage({action: "update"});
+  // throws when side panel is not active
+  chrome.runtime.sendMessage({action: "update"}).catch(() => {});
 
   //
   // DEV ONLY
