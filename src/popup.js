@@ -1,14 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  const name = document.getElementById("name");
+  const save = document.getElementById("save");
+
   const form = document.getElementById("form");
   // submission listener for window storage
   form.addEventListener("submit", (e) => {
-    e.preventDefault();
     handleSave(document.getElementById("name").value);
   });
-
-  const name = document.getElementById("name");
-  const save = document.getElementById("save");
 
   name.addEventListener("input", (e) => {
     if (name.value === "" || name.value.length > 20) {
