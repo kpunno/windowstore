@@ -35,7 +35,16 @@ function handleDelete(windowName) {
 function loadElements(data) {
   const div = document.getElementById("windows");
   div.innerHTML = "";
+  
+  // no tabs to display
+  if (!Object.keys(data).length) {
+    div.classList.add("btn-shadowed");
+    div.innerText = "You have no saved windows."
+    div.disabled = true;
+    return;
+  }
 
+  // for each tab
   for (key in data) {
     // button, tab count are children of a span
     let span = document.createElement("span");
