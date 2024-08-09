@@ -38,12 +38,10 @@ function storeWindow(name, res) {
     urls.push(tab.url);
   });
   
-  chrome.storage.sync.set({ [name]: { urls } }, (name) => {
-    console.log(`Window "${name}" was saved.`);
-  });
+  chrome.storage.sync.set({ [name]: { urls } });
 
   // inform sidepanel to update list
-  // throws when side panel is not active
+  // throws if side panel is not open
   chrome.runtime.sendMessage({action: "update"}).catch(() => {});
 
   //
